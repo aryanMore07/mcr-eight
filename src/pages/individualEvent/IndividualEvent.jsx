@@ -25,9 +25,6 @@ const style = {
 
 const IndividualEvent = () => {
 
-    const formatNumbers = function (num) {
-        return num < 10 ? "0" + num : num;
-    }
 
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
@@ -40,14 +37,6 @@ const IndividualEvent = () => {
     const selectedEvent = state.data.meetups.find(({ id }) => id === eventId);
 
     const { title, isPaid, location, price, speakers, hostedBy, eventThumbnail, eventTags, eventStartTime, eventEndTime, eventDescription, address, additionalInformation } = selectedEvent;
-
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-
-    const rsvpBtnHandler = () => {
-
-
-    }
 
     return (
         <div className='individual-div'>
@@ -111,14 +100,10 @@ const IndividualEvent = () => {
                                     <div style={{ margin: '15px 0px 15px 0px' }}>
                                         <h2><b>Complete your RSVP</b></h2>
                                         <p style={{ color: 'silver' }}>Fill in your personal information</p>
-                                        <TextField fullWidth label="Name" id="fullWidth" onChange={(event) => {
-                                            setName(event.target.value);
-                                        }} />
+                                        <TextField fullWidth label="Name" id="fullWidth" />
                                     </div>
                                     <div style={{ margin: '15px 0px 15px 0px' }}>
-                                        <TextField fullWidth label="Email" id="fullWidth" onChange={(event) => {
-                                            setEmail(event.target.value)
-                                        }} />
+                                        <TextField fullWidth label="Email" id="fullWidth" />
                                     </div>
                                     <Button fullWidth variant='contained'>RSVP</Button>
                                     <p>{!isPaid && (<p style={{ color: 'silver' }}>*You have to make payment at the vanue</p>)}</p>
@@ -127,7 +112,6 @@ const IndividualEvent = () => {
                         </Modal>
                     </div>
                 </div>
-
             </div>
         </div>
     )
