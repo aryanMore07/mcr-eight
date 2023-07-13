@@ -3,21 +3,13 @@ import './landingPage.css';
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
 import { DataContext } from '../../contexts/DataContext';
+import { useNavigate } from 'react-router';
 
 const LandingPage = () => {
 
   const { dispatch, dropdownFilter } = useContext(DataContext);
 
-  const getEventData = (eventDate) => {
-    var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-    const dayName = ['Mon', 'Tues', 'Wed', 'Thu', 'Fri', 'Sat'];
-    const date = new Date(eventDate);
-    const event_date = date.getDate();
-    const event_month = date.getMonth() + 1;
-    const event_year = date.getFullYear();
-    const event_day = date.getDay();
-    return `${dayName[event_day]} ${event_date}-${months[event_month]}-${event_year}`;
-  }
+  const navigate = useNavigate();
 
   return (
     <div className='landing-page-div'>
@@ -44,13 +36,15 @@ const LandingPage = () => {
           dropdownFilter.map((events) => {
             const { id, title, eventThumbnail, eventStartTime, eventType, } = events;
             return (
-              <div key={id} className='event-card'>
+              <div key={id} className='event-card' onClick={() => {
+                navigate(`/event/${id}`)
+              }}>
                 <div className='event-card-header'>
                   <img src={eventThumbnail} alt={title} className='event-img' />
                   <span className='event-type'>{eventType}</span>
                 </div>
                 <div className='event-card-body'>
-                  <p style={{color: 'silver', fontSize: '15px'}}>{getEventData(eventStartTime)}</p>
+                  <p style={{color: 'silver', fontSize: '15px'}}>{new Date(eventStartTime).toUTCString()}</p>
                 <p style={{ fontSize: '25px', fontWeight: '600' }}>{title}</p>
               </div>
               </div>
@@ -58,7 +52,7 @@ const LandingPage = () => {
           })
         }
     </div>
-    </div >
+    </div>
   )
 }
 
