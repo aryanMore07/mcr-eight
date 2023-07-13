@@ -10,11 +10,13 @@ const LandingPage = () => {
 
   const getEventData = (eventDate) => {
     var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    const dayName = ['Mon', 'Tues', 'Wed', 'Thu', 'Fri', 'Sat'];
     const date = new Date(eventDate);
     const event_date = date.getDate();
     const event_month = date.getMonth() + 1;
     const event_year = date.getFullYear();
-    return `${event_date}-${months[event_month]}-${event_year}`;
+    const event_day = date.getDay();
+    return `${dayName[event_day]} ${event_date}-${months[event_month]}-${event_year}`;
   }
 
   return (
@@ -48,16 +50,15 @@ const LandingPage = () => {
                   <span className='event-type'>{eventType}</span>
                 </div>
                 <div className='event-card-body'>
-                  {/* {console.log(dayjs(eventStartTime).$d)} */}
-                  <p>{getEventData(eventStartTime)}</p>
-                  <p style={{ fontSize: '25px', fontWeight: '600' }}>{title}</p>
-                </div>
+                  <p style={{color: 'silver', fontSize: '15px'}}>{getEventData(eventStartTime)}</p>
+                <p style={{ fontSize: '25px', fontWeight: '600' }}>{title}</p>
               </div>
-            )
+              </div>
+      )
           })
         }
-      </div>
     </div>
+    </div >
   )
 }
 
