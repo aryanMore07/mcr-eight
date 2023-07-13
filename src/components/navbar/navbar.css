@@ -1,0 +1,27 @@
+/* Default styles for mobile devices */
+.navbar-div {
+  border: 2px solid #dcdcdc;
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 3rem 0px 3rem;
+}
+
+/* Styles for tablets (portrait) and up */
+@media (min-width: 768px) {
+  .navbar-div {
+    border: 2px solid #dcdcdc;
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 3rem 0px 3rem;
+  }
+}
+
+/* Styles for laptops and up */
+@media screen and (min-width: 1024px) {
+  .navbar-div {
+    border: 2px solid #dcdcdc;
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 3rem 0px 3rem;
+  }
+}
