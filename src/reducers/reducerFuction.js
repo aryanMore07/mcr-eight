@@ -8,6 +8,10 @@ export const reducerFunction = (state, action) => {
             return {
                 ...state, dropDownInput: action.payload
             }
+        case "UPDATE_DATA":
+            return {
+                ...state, data: action.payload
+            }
         default:
             return state
     }

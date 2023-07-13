@@ -25,18 +25,28 @@ const style = {
 
 const IndividualEvent = () => {
 
-
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
     const navigate = useNavigate();
     const { eventId } = useParams();
-    const { state } = useContext(DataContext);
+    const { state, dispatch } = useContext(DataContext);
 
-    const selectedEvent = state.data.meetups.find(({ id }) => id === eventId);
+    const selectedEvent = state.data.find(({ id }) => id === eventId);
 
-    const { title, isPaid, location, price, speakers, hostedBy, eventThumbnail, eventTags, eventStartTime, eventEndTime, eventDescription, address, additionalInformation } = selectedEvent;
+    const { id, title, isPaid, location, price, speakers, hostedBy, eventThumbnail, eventTags, eventStartTime, eventEndTime, eventDescription, address, additionalInformation, rsvp } = selectedEvent;
+
+    const rsvpBtnhandler = (eventId) => {
+        if (name && email) {
+            const setRsvp = state.data.map((event) => event.id === eventId ? {...event, rsvp: true} : event)
+            console.log(setRsvp);
+            dispatch({type: 'UPDATE_DATA', payload: setRsvp})
+        }
+    }
 
     return (
         <div className='individual-div'>
@@ -88,28 +98,49 @@ const IndividualEvent = () => {
 
                 <div className='rsvp-btn-div'>
                     <div>
-                        <Button variant='contained' onClick={handleOpen}>Rsvp</Button>
-                        <Modal
-                            open={open}
-                            onClose={handleClose}
-                            aria-labelledby="modal-modal-title"
-                            aria-describedby="modal-modal-description"
-                        >
-                            <Box sx={style}>
-                                <div className='text-inputs'>
-                                    <div style={{ margin: '15px 0px 15px 0px' }}>
-                                        <h2><b>Complete your RSVP</b></h2>
-                                        <p style={{ color: 'silver' }}>Fill in your personal information</p>
-                                        <TextField fullWidth label="Name" id="fullWidth" />
-                                    </div>
-                                    <div style={{ margin: '15px 0px 15px 0px' }}>
-                                        <TextField fullWidth label="Email" id="fullWidth" />
-                                    </div>
-                                    <Button fullWidth variant='contained'>RSVP</Button>
-                                    <p>{!isPaid && (<p style={{ color: 'silver' }}>*You have to make payment at the vanue</p>)}</p>
-                                </div>
-                            </Box>
-                        </Modal>
+                        {
+                            rsvp ?
+                                (
+                                    <Button disabled variant='contained'>Already Rsvp</Button>
+                                )
+                                :
+                                (
+                                    <>
+
+
+                                        <Button variant='contained' onClick={handleOpen}>Rsvp</Button>
+                                        <Modal
+                                            open={open}
+                                            onClose={handleClose}
+                                            aria-labelledby="modal-modal-title"
+                                            aria-describedby="modal-modal-description"
+                                        >
+                                            <Box sx={style}>
+                                                <div className='text-inputs'>
+                                                    <div style={{ margin: '15px 0px 15px 0px' }}>
+                                                        <h2><b>Complete your RSVP</b></h2>
+                                                        <p style={{ color: 'silver' }}>Fill in your personal information</p>
+                                                        <TextField fullWidth label="Name" id="fullWidth" onChange={(event) => {
+                                                            setName(event.target.value)
+                                                        }} />
+                                                    </div>
+                                                    <div style={{ margin: '15px 0px 15px 0px' }}>
+                                                        <TextField fullWidth
+                                                        type='email' label="Email" id="fullWidth" onChange={(event) => {
+                                                            setEmail(event.target.value)
+                                                        }} />
+                                                    </div>
+                                                    <Button fullWidth variant='contained' onClick={() => {
+                                                        rsvpBtnhandler(id)
+                                                    }}>RSVP</Button>
+                                                    <p>{!isPaid && (<p style={{ color: 'silver' }}>*You have to make payment at the vanue</p>)}</p>
+                                                </div>
+                                            </Box>
+                                        </Modal>
+                                    </>
+                                )
+                        }
+
                     </div>
                 </div>
             </div>
