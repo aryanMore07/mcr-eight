@@ -4,6 +4,10 @@ export const reducerFunction = (state, action) => {
             return {
                 ...state, searchInput: action.payload
             }
+        case "DROPDOWN_INPUT":
+            return {
+                ...state, dropDownInput: action.payload
+            }
         default:
             return state
     }

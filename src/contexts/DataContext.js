@@ -7,6 +7,7 @@ export const DataContext = createContext();
 const initialState = {
     data: meetUpData,
     searchInput: '',
+    dropDownInput: ''
 }
 
 export const DataProvider = ({ children }) => {
@@ -15,5 +16,8 @@ export const DataProvider = ({ children }) => {
 
     const searchedData = state.searchInput ? state.data.meetups.filter(({ title, eventTags }) => title.includes(state.searchInput) && eventTags.map((tag) => tag.includes(state.searchInput))) : state.data.meetups;
 
-    return <DataContext.Provider value={{ state, dispatch, searchedData }}>{children}</DataContext.Provider>
+    const dropdownFilter = state.dropDownInput ? 
+    state.dropDownInput === 'both' ? searchedData :  searchedData.filter(({eventType}) => eventType === state.dropDownInput) : searchedData;
+
+    return <DataContext.Provider value={{ state, dispatch, dropdownFilter }}>{children}</DataContext.Provider>
 }
