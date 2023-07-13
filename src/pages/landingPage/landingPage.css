@@ -1,0 +1,138 @@
+/* Default styles for mobile devices */
+.landing-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 22px 1.5rem 22px 1.5rem;
+}
+
+.landing-body {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 15px;
+}
+
+.event-card {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #dcdcdc;
+  border-radius: 5px;
+}
+
+.event-card:hover {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.event-img {
+  width: 200px;
+  height: 200px;
+}
+
+.event-card-header {
+  display: flex;
+  position: relative;
+}
+.event-type {
+  background-color: white;
+  border-radius: 8px;
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  padding: 0px 8px 0px 8px;
+}
+
+/* Styles for tablets (portrait) and up */
+@media (min-width: 768px) {
+  .landing-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 22px 1.5rem 22px 1.5rem;
+  }
+
+  .landing-body {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+  }
+
+  .event-card {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #dcdcdc;
+    border-radius: 5px;
+  }
+
+  .event-card:hover {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  }
+
+  .event-img {
+    width: 200px;
+    height: 200px;
+  }
+
+  .event-card-header {
+    display: flex;
+    position: relative;
+  }
+  .event-type {
+    background-color: white;
+    border-radius: 8px;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    padding: 0px 8px 0px 8px;
+  }
+}
+
+/* Styles for laptops and up */
+@media screen and (min-width: 1024px) {
+  .landing-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 22px 1.5rem 22px 1.5rem;
+  }
+
+  .landing-body {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+  }
+
+  .event-card {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #dcdcdc;
+    border-radius: 5px;
+  }
+
+  .event-card:hover {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  }
+
+  .event-img {
+    width: 200px;
+    height: 200px;
+  }
+
+  .event-card-header {
+    display: flex;
+    position: relative;
+  }
+  .event-type {
+    background-color: white;
+    border-radius: 8px;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    padding: 0px 8px 0px 8px;
+  }
+}
